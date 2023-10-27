@@ -6,18 +6,22 @@ import thankYou from "../assets/images/icon-thank-you.svg";
 
 import { motion } from "framer-motion";
 import Buttons from "./Buttons";
+import { useEffect } from "react";
 
 const Summary = () => {
+  const dispatch = useDispatch();
+
   const isCompleted = useSelector(state => state.global.isCompleted);
   const section = useSelector(state => state.global.section);
 
-  const dispatch = useDispatch();
   const plans = useSelector((state) => state.plans);
   const addOns = useSelector((state) => state.addOns);
   const yearly = useSelector((state) => state.plans.yearly);
   const total = useSelector((state) => state.global.total);
 
-  dispatch(setTotal(yearly ? 10 * (plans[plans.plan] + (addOns.online.bool ? addOns.online.price : 0) + (addOns.storage.bool ? addOns.storage.price : 0) + (addOns.profile.bool ? addOns.profile.price : 0)) : (plans[plans.plan] + (addOns.online.bool ? addOns.online.price : 0) + (addOns.storage.bool ? addOns.storage.price : 0) + (addOns.profile.bool ? addOns.profile.price : 0))))
+  useEffect(() => {
+    dispatch(setTotal(yearly ? 10 * (plans[plans.plan] + (addOns.online.bool ? addOns.online.price : 0) + (addOns.storage.bool ? addOns.storage.price : 0) + (addOns.profile.bool ? addOns.profile.price : 0)) : (plans[plans.plan] + (addOns.online.bool ? addOns.online.price : 0) + (addOns.storage.bool ? addOns.storage.price : 0) + (addOns.profile.bool ? addOns.profile.price : 0))))
+  }, [])
 
 
   const changePlan = () => {

@@ -24,12 +24,10 @@ const Info = () => {
     dispatch(setName(e.target.name.value));
     dispatch(setEmail(e.target.mail.value));
     dispatch(setPhone(e.target.phone.value));
+    formInfo.name !== "" && formInfo.email !== "" && formInfo.phone !== "" && dispatch(setIsFilled(true))
     dispatch(setSection(1));
   }
 
-  formInfo.name !== "" && formInfo.email !== "" && formInfo.phone !== "" && dispatch(setIsFilled(true))
-
-  console.log(formInfo)
 
   return (
     <form action="" onSubmit={formSubmit}>

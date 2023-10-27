@@ -15,12 +15,14 @@ const Buttons = ({ text, className, section, type, changeOption }) => {
                 }
                 dispatch(goPrevSection())
                 break;
+                
             case "nextSection":
                 if (section === 3) {
                     return
                 }
                 dispatch(goNextSection())
                 break;
+
             case "confirm":
                 console.log("Confirmed");
                 dispatch(setIsCompleted());
